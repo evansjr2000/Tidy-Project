@@ -7,8 +7,11 @@ run_analysis <- function () {
   ### "UCI-HAR-Dataset" and its subdirectories.
 
   s1 <- read.table("UCI-HAR-Dataset/train/subject_train.txt",sep="")
+
   a1 <- read.table("UCI-HAR-Dataset/train/y_train.txt")
+
   d1 <- read.table("UCI-HAR-Dataset/train/X_train.txt")
+
   f1 <- read.table("UCI-HAR-Dataset/features.txt")
   
   ### Now each data set above has 7231 lines.  So I will do a column
@@ -21,7 +24,9 @@ run_analysis <- function () {
   ## Now I do the same for the test data as I did for the training data.
   ##
   s1 <- read.table("UCI-HAR-Dataset/test/subject_test.txt",sep="")
+
   a1 <- read.table("UCI-HAR-Dataset/test/y_test.txt")
+
   d1 <- read.table("UCI-HAR-Dataset/test/X_test.txt")
   
   
@@ -60,10 +65,15 @@ run_analysis <- function () {
   ### Here I do the conversion to readable activity descriptions.
 
   all2$Activity[all2$Activity == "1"] <- "WALKING"
+
   all2$Activity[all2$Activity == "2"] <- "WALKING_UPSTAIRS"
+
   all2$Activity[all2$Activity == "3"] <- "WALKING_DOWNSTAIRS"
+
   all2$Activity[all2$Activity == "4"] <- "SITTING"
+
   all2$Activity[all2$Activity == "5"] <- "STANDING"
+
   all2$Activity[all2$Activity == "6"] <- "LAYING"
 
   ### lastly I group everything by Activity and Subject, then
@@ -71,5 +81,6 @@ run_analysis <- function () {
   ### the "tidy" data.
 
   group_by(all2,Activity,Subject) %>% summarise_each(funs(mean))
+
 }
 
